@@ -1,13 +1,13 @@
-# ---------- Build stage ----------
+# -------- BUILD STAGE --------
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
-COPY backend/pom.xml .
-COPY backend/src ./src
+COPY backend/ComplaintManagementSystem/pom.xml .
+COPY backend/ComplaintManagementSystem/src ./src
 
 RUN mvn clean package -DskipTests
 
-# ---------- Runtime stage ----------
+# -------- RUNTIME STAGE --------
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 
