@@ -1,17 +1,28 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./auth/AuthContext";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./auth/AuthContext";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import RoleRoute from "./auth/RoleRoute";
 
-// User
-import UserLogin from "./user/pages/UserLogin";
+// Pages
+import Login from "./Login";
+import Register from "./Register";
 import Home from "./user/pages/Home";
 
 // Admin
-import AdminLogin from "./admin/pages/AdminLogin";
 import AdminLayout from "./admin/AdminLayout";
 import Dashboard from "./admin/pages/Dashboard";
 import Complaints from "./admin/pages/Complaints";
+
+const RoleRedirect = () => {
+  const { role } = useAuth();
+
+  if (role === "ROLE_ADMIN") {
+    return <Navigate to="/admin" replace />;
+  }
+
+  // Default to user complaint form
+  return <Home />;
+};
 
 function App() {
   return (
@@ -19,21 +30,21 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          {/* USER */}
-          <Route path="/login" element={<UserLogin />} />
+          {/* LOGIN / REGISTER */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* ROOT - redirects based on role */}
           <Route
             path="/"
             element={
               <ProtectedRoute>
-                <RoleRoute allowedRole="ROLE_USER">
-                  <Home />
-                </RoleRoute>
+                <RoleRedirect />
               </ProtectedRoute>
             }
           />
 
-          {/* ADMIN */}
-          <Route path="/admin/login" element={<AdminLogin />} />
+          {/* ADMIN DASHBOARD */}
           <Route
             path="/admin"
             element={

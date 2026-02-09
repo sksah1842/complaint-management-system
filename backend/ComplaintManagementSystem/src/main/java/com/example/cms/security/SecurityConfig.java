@@ -47,7 +47,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(
                 List.of(
                         "http://localhost:5173",
-                        "https://complaint-management-system-sage.vercel.app"
+                        "https://complaint-management-system-sage.vercel.app",
+                        "https://complaint-management-system-production-8469.up.railway.app"
                 )
         );
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
