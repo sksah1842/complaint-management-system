@@ -20,7 +20,7 @@ function App() {
         <Routes>
 
           {/* USER */}
-          <Route path="/user/login" element={<UserLogin />} />
+          <Route path="/login" element={<UserLogin />} />
           <Route
             path="/"
             element={
