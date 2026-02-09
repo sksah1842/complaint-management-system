@@ -30,7 +30,7 @@ public class SecurityConfig {
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .headers(headers -> headers.frameOptions(frame -> frame.disable()))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/h2-console/**").permitAll()
+            .requestMatchers("/h2-console/**","/","/health").permitAll()
             .requestMatchers("/api/auth/**").permitAll()
             .requestMatchers("/api/user/**").hasRole("USER")
             .requestMatchers("/api/admin/**").hasRole("ADMIN")
