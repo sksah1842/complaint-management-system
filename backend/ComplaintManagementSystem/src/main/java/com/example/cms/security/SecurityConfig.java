@@ -30,7 +30,7 @@ public class SecurityConfig {
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .headers(headers -> headers.frameOptions(frame -> frame.disable()))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/h2-console/**","/","/health").permitAll()
+            .requestMatchers("/h2-console/**", "/", "/health").permitAll()
             .requestMatchers("/api/auth/**").permitAll()
             .requestMatchers("/api/user/**").hasRole("USER")
             .requestMatchers("/api/admin/**").hasRole("ADMIN")
@@ -47,8 +47,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(
                 List.of(
                         "http://localhost:5173",
-                        "https://complaint-management-system-sage.vercel.app",
-                        "https://complaint-management-system-production-8469.up.railway.app"
+                        "https://complaint-management-system-sage.vercel.app"
+        
                 )
         );
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
