@@ -1,7 +1,6 @@
 package com.example.cms.entity;
 
-import org.springframework.data.annotation.Id;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +24,7 @@ public class Complaint {
 
     @NotBlank(message = "Description must not be empty")
     @Size(min = 10, max = 500, message = "Description must be between 10 and 500 characters")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String status = "OPEN";
