@@ -5,7 +5,7 @@ import axios from "axios";
  */
 const api = axios.create({
   // Use env var if provided, otherwise default to backend on port 8081
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8081/api",
+  baseURL: "https://complaint-management-system-8snc.onrender.com" || "http://localhost:8081/api",
   headers: {
     "Content-Type": "application/json",
   },
